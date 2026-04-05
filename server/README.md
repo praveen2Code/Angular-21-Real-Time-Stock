@@ -278,30 +278,7 @@ The server can run without a Finnhub API key by using mock data generation. Simp
    npm start
    ```
 
-### Docker Deployment (Optional)
 
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-EXPOSE 8080
-CMD ["npm", "start"]
-```
-
-## Monitoring
-
-### Server Logs
-
-The server outputs connection status and errors to console:
-- Client connections/disconnections
-- Finnhub API connection status
-- Data transmission confirmations
-
-### Health Checks
-
-Basic health check can be implemented by connecting to the WebSocket and verifying data reception.
 
 ## Security Considerations
 
@@ -333,67 +310,6 @@ Basic health check can be implemented by connecting to the WebSocket and verifyi
 - Verify API key validity at https://finnhub.io/
 - Check API rate limits
 - Review Finnhub service status
-
-### Debug Mode
-
-Enable additional logging by modifying `index.js` to include debug statements.
-
-## Performance
-
-### Resource Usage
-- **Memory**: Minimal (~50MB for basic operation)
-- **CPU**: Low usage for mock data, moderate for real-time processing
-- **Network**: WebSocket connections, Finnhub API calls
-
-### Scalability
-- Supports multiple concurrent WebSocket connections
-- Can be scaled horizontally with load balancer
-- Consider connection pooling for high-traffic scenarios
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes with proper error handling
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is licensed under the ISC License.
-
-## Support
-
-### Documentation Links
-- **WebSocket Protocol**: https://tools.ietf.org/html/rfc6455
-- **Finnhub API**: https://finnhub.io/docs/api
-- **ws Package**: https://github.com/websockets/ws
-
-### Getting Help
-- Check server logs for error messages
-- Verify network connectivity
-- Test with mock data (without API key)
-- Review Finnhub API documentation
-
-## Future Enhancements
-
-- Authentication and authorization
-- Stock symbol configuration via API
-- Historical data caching
-- Rate limiting and throttling
-- Monitoring and metrics
-- Docker containerization
-- Load balancing support
-- Data persistence options
-│   │   │   │   └── stock.model.ts
-│   │   │   │
-│   │   │   └── app.component.ts
-│   │   │
-│   │   └── styles.css
-│   │
-│   └── angular.json
-│
-└── README.md
 
 ```
 
@@ -572,11 +488,6 @@ index.js does:
 - **Finnhub** - Stock API
 - **dotenv** - Environment variables
 
-## Learn More
-
-- WebSocket: https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
-- Finnhub API: https://finnhub.io/docs/api
-- ws package: https://github.com/websockets/ws
 
 ## Support
 
