@@ -1,8 +1,10 @@
 import { Component, signal } from '@angular/core';
+import { StockDashboard } from './components/stock-dashboard/stock-dashboard';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  standalone: true,
+  imports: [StockDashboard],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

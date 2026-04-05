@@ -1,0 +1,16 @@
+<!-- <p>stock-dashboard works!</p> -->
+
+<div class="grid">
+  @for (stock of stockService.stocks(); track stock) {
+    <app-stock-card
+      [stock]="stock"
+      (toggle)="stockService.toggle($event)">
+    </app-stock-card>
+  } @empty {
+    <div class="loading">
+      <p>Connecting to stock data...</p>
+      <p>Current WebSocket: ws://localhost:8080</p>
+      <p>Backend must be running and able to send trades.</p>
+    </div>
+  }
+</div>

@@ -1,0 +1,154 @@
+.card {
+  border-radius: 18px;
+  padding: 20px;
+  color: white;
+  transition: 0.3s ease;
+  text-align: center;
+  min-height: 220px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* FULL CARD COLORS */
+.up {
+  background: linear-gradient(135deg, #00c853, #009624);
+}
+
+.down {
+  background: linear-gradient(135deg, #ff1744, #b2102f);
+}
+
+.off {
+  background: #616161;
+  opacity: 0.8;
+}
+
+/* HEADER */
+.header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* PRICE */
+.price {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* DETAILS */
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.details span {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.details p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+/* TOGGLE CONTAINER */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+/* SWITCH */
+.switch {
+  position: relative;
+  width: 70px;
+  height: 28px;
+}
+
+.switch input {
+  display: none;
+}
+
+/* SLIDER */
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+}
+
+/* BUTTON CIRCLE */
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+/* LABELS */
+.label {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.label.on {
+  opacity: 0;
+}
+
+.label.off {
+  opacity: 1;
+}
+
+/* WHEN ON */
+input:checked + .slider {
+  background: #00c853;
+}
+
+input:checked + .slider:before {
+  transform: translateX(42px);
+}
+
+input:checked + .slider .on {
+  opacity: 1;
+}
+
+input:checked + .slider .off {
+  opacity: 0;
+}
+
+/* TEXT */
+.toggle-text {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
+.desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop {
+    display: flex;
+  }
+}

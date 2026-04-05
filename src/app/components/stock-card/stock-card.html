@@ -1,0 +1,55 @@
+<!-- <p>stock-card works!</p> -->
+
+<div class="card" [ngClass]="statusClass">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h3>{{ stock.symbol }}</h3>
+  </div>
+
+  <!-- PRICE -->
+  <div class="price">
+    ₹ {{ stock.current }}
+  </div>
+
+  <!-- DETAILS -->
+  <div class="details">
+    <div>
+      <span>Daily High Price</span>
+      <p>{{ stock.high }}</p>
+    </div>
+
+    <div>
+      <span>Daily Low Price</span>
+      <p>{{ stock.low }}</p>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div class="details desktop">
+    <div>
+      <span>52W High Price</span>
+      <p>{{ stock.high52 }}</p>
+    </div>
+
+    <div>
+      <span>52W Low Price</span>
+      <p>{{ stock.low52 }}</p>
+    </div>
+  </div>
+
+  <!-- TOGGLE (BOTTOM CENTER) -->
+  <div class="toggle-container">
+  <label class="switch">
+    <input type="checkbox"
+           [checked]="stock.active"
+           (change)="toggle.emit(stock.symbol)">
+
+    <span class="slider">
+      <span class="label on">ON</span>
+      <span class="label off">OFF</span>
+    </span>
+  </label>
+</div>
+
+</div>

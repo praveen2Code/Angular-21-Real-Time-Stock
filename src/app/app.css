@@ -1,0 +1,18 @@
+.app-header {
+  background: #1a2540;
+  padding: 20px;
+  border-bottom: 2px solid #334155;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.app-header h1 {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+app-stock-dashboard {
+  display: block;
+  min-height: calc(100vh - 80px);
+}
