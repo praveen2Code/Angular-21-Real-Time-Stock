@@ -331,9 +331,11 @@ Each card shows:
 - **RxJS** - Handles data streams
 - **WebSocket** - Real-time updates
 - **Vitest** - Testing
-<img width="1917" height="1075" alt="Screenshot 2026-04-05 224518" src="https://github.com/user-attachments/assets/b1eb56e4-8eba-4278-9f4f-bc60e41eabc9" />
-<img width="1916" height="1079" alt="Screenshot 2026-04-05 224203" src="https://github.com/user-attachments/assets/4b324e0e-bfad-4b11-9ebd-617729f701c1" />
-<img width="1916" height="1076" alt="Screenshot 2026-04-05 224141" src="https://github.com/user-attachments/assets/f97669cd-4c98-4a7a-a8b4-e7dbbc9afc1b" />
+
+<img width="1917" height="1075" alt="Screenshot 2026-04-05 224518" src="https://github.com/user-attachments/assets/db5c7136-4e17-4b86-be25-983abda1a38b" />
+<img width="1916" height="1079" alt="Screenshot 2026-04-05 224203" src="https://github.com/user-attachments/assets/95d3e59b-4e1d-4fcd-8daf-36a9c991de90" />
+<img width="1916" height="1076" alt="Screenshot 2026-04-05 224141" src="https://github.com/user-attachments/assets/ce9d60a7-825c-41e2-9fbb-3e9a72ad24f6" />
+
 
 ## Learn More
 
