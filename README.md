@@ -1,203 +1,181 @@
-# Stock Dashboard - Angular Client
+# Stock Dashboard - Angular + WebSocket Server
 
-A real-time stock market dashboard application built with Angular 21, providing live stock price updates through WebSocket connections. This application displays stock information including current prices, daily highs/lows, and 52-week ranges for multiple stock symbols.
+A real-time stock dashboard built with Angular 21 and a Node.js WebSocket backend. The frontend displays live stock updates and the backend streams stock data to connected clients.
 
-## Features
+## Overview
 
-- **Real-time Stock Updates**: Live price updates via WebSocket connection
-- **Interactive Stock Cards**: Individual cards for each stock with detailed information
-- **Stock Tracking Toggle**: Enable/disable tracking for specific stocks
-- **Responsive Design**: Works on desktop and mobile devices
-- **Modern Angular Architecture**: Built with standalone components and signals
-- **TypeScript Support**: Full type safety throughout the application
+- Frontend: Angular client application
+- Backend: Node.js WebSocket server in `server/`
+- Client connects to backend at `ws://localhost:8080`
 
 ## Prerequisites
 
-- Node.js (version 18 or higher)
-- npm (version 9 or higher)
-- Angular CLI (version 21 or higher)
+- Node.js 18 or higher
+- npm 9 or higher
+- Finnhub API key (optional, only if using real market data via backend)
 
-## Installation
-
-1. Clone the repository or navigate to the project directory:
-   ```bash
-   cd "g:\2026 Projects\client - Copy"
-   ```
-
-2. Install Angular client dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Navigate to the server directory and install server dependencies:
-   ```bash
-   cd server
-   npm install
-   cd ..
-   ```
-
-   This will create `node_modules` directories in both the root folder (for Angular) and the `server` folder (for the Node.js server).
-
-## Usage
-
-### Development
-
-Start the development server:
-```bash
-npm start
-```
-
-The application will be available at `http://localhost:4200`. The development server includes hot reload for automatic updates during development.
-
-### Building for Production
-
-Build the application for production:
-```bash
-npm run build
-```
-
-The build artifacts will be stored in the `dist/` directory.
-
-### Testing
-
-Run unit tests:
-```bash
-npm test
-```
-
-Run tests in watch mode:
-```bash
-npm run watch
-```
-
-## Project Structure
+## Repository Layout
 
 ```
 client - Copy/
 ├── angular.json                 # Angular CLI configuration
-├── package.json                 # Project dependencies and scripts
+├── package.json                 # Angular client dependencies and scripts
 ├── tsconfig.json                # TypeScript configuration
-├── tsconfig.app.json            # Application-specific TypeScript config
-├── tsconfig.spec.json           # Test-specific TypeScript config
+├── tsconfig.app.json            # App TypeScript config
+├── tsconfig.spec.json           # Test TypeScript config
 ├── public/                      # Static assets
-├── src/
-│   ├── index.html               # Main HTML template
-│   ├── main.ts                  # Application bootstrap
+├── src/                         # Angular application source
+│   ├── index.html               # HTML entry point
+│   ├── main.ts                  # Bootstrap file
 │   ├── styles.css               # Global styles
-│   └── app/                     # Main application code
+│   └── app/                     # Main app folder
 │       ├── app.ts               # Root component
 │       ├── app.html             # Root template
 │       ├── app.css              # Root styles
-│       ├── app.config.ts        # Angular configuration
+│       ├── app.config.ts        # App configuration
 │       ├── app.spec.ts          # Root component tests
-│       ├── components/          # Reusable UI components
-│       │   ├── stock-card/      # Individual stock card component
+│       ├── components/          # UI components
+│       │   ├── stock-card/
 │       │   │   ├── stock-card.ts
 │       │   │   ├── stock-card.html
 │       │   │   ├── stock-card.css
 │       │   │   └── stock-card.spec.ts
-│       │   └── stock-dashboard/ # Main dashboard component
+│       │   └── stock-dashboard/
 │       │       ├── stock-dashboard.ts
 │       │       ├── stock-dashboard.html
 │       │       ├── stock-dashboard.css
 │       │       └── stock-dashboard.spec.ts
-│       ├── models/              # TypeScript interfaces
-│       │   └── stock.model.ts   # Stock data model
+│       ├── models/              # Data models
+│       │   └── stock.model.ts
 │       └── services/            # Business logic services
-│           ├── stock-service.ts # Stock data management
+│           ├── stock-service.ts
 │           ├── stock-service.spec.ts
-│           ├── websocket-service.ts # WebSocket communication
+│           ├── websocket-service.ts
 │           └── websocket-service.spec.ts
-└── README.md                    # This file
+├── README.md                    # This file
+└── server/                      # Backend server code
+    ├── index.js                 # WebSocket server entry point
+    ├── package.json             # Server dependencies and scripts
+    └── README.md                # Server README
 ```
 
-## Architecture
+## Setup
 
-### Components
+### 1. Install frontend dependencies
 
-#### App Component (`app.ts`)
-The root component that bootstraps the application and renders the stock dashboard.
+From the project root:
 
-#### StockDashboard Component
-- **Purpose**: Main container component that displays all stock cards
-- **Features**: Manages the layout and passes data to individual stock cards
-- **Template**: `stock-dashboard.html`
-- **Styles**: `stock-dashboard.css`
-
-#### StockCard Component
-- **Purpose**: Displays detailed information for a single stock
-- **Features**:
-  - Current price with change indicators
-  - Daily high/low prices
-  - 52-week high/low ranges
-  - Toggle button to activate/deactivate tracking
-- **Template**: `stock-card.html`
-- **Styles**: `stock-card.css`
-
-### Services
-
-#### StockService
-- **Purpose**: Manages stock data state using Angular signals
-- **Features**:
-  - Maintains an array of stock data
-  - Handles real-time updates from WebSocket
-  - Provides methods to toggle stock tracking
-  - Calculates price changes and trends
-
-#### WebSocketService
-- **Purpose**: Handles WebSocket communication with the backend server
-- **Features**:
-  - Establishes connection to `ws://localhost:8080`
-  - Streams stock data as observables
-  - Manages connection lifecycle and error handling
-
-### Data Models
-
-#### Stock Interface
-```typescript
-interface Stock {
-  symbol: string;      // Stock ticker symbol
-  current: number;     // Current price
-  high: number;        // Daily high
-  low: number;         // Daily low
-  high52: number;      // 52-week high
-  low52: number;       // 52-week low
-  previous?: number;   // Previous price for change calculation
-  active: boolean;     // Whether stock is being tracked
-}
+```bash
+cd "g:\2026 Projects\client"
+npm install
 ```
 
-## Data Flow
+### 2. Install backend dependencies
 
-1. **Application Start**: `main.ts` bootstraps the Angular application
-2. **Component Initialization**: App component loads StockDashboard
-3. **Service Initialization**: StockService connects to WebSocketService
-4. **WebSocket Connection**: Establishes connection to backend server
-5. **Data Streaming**: Stock data flows from server → WebSocketService → StockService → Components
-6. **UI Updates**: Components update automatically via Angular signals
+From the project root:
 
-## Configuration
+```bash
+cd server
+npm install
+```
 
-### Angular Configuration (`app.config.ts`)
-Contains application-wide configuration including:
-- Component imports
-- Provider setup
-- Routing configuration (if applicable)
+### 3. Configure backend environment
 
-### Environment Setup
-The application connects to a WebSocket server running on `ws://localhost:8080`. Ensure the backend server is running before starting the client.
+Create a `.env` file inside `server/` if you want to use the Finnhub API:
 
-## Testing
+```bash
+cd server
+copy NUL .env
+```
 
-The application uses Vitest for unit testing. Test files are located alongside their corresponding source files with the `.spec.ts` extension.
+Add the following line to `server/.env`:
 
-### Running Tests
+```text
+FINNHUB_KEY=your_finnhub_api_key_here
+```
+
+> If you do not provide `FINNHUB_KEY`, the backend should still start and use mock data.
+
+## Running the Application
+
+### Start the backend server first
+
+From the `server/` folder:
+
+```bash
+cd server
+npm start or node index.js
+```
+
+The backend server listens on `ws://localhost:8080`.
+
+### Start the Angular frontend
+
+Open a second terminal from the project root:
+
+```bash
+cd "g:\2026 Projects\client"
+npm start or ng serve
+```
+
+Angular will start the development server on `http://localhost:4200`.
+
+### Open the app
+
+Visit:
+
+```text
+http://localhost:4200
+```
+
+The frontend will connect to the backend WebSocket server automatically.
+
+## Running Tests
+
+### Frontend tests
+
+From the project root:
+
 ```bash
 npm test
 ```
 
-### Test Coverage
-Tests cover:
+### Backend tests
+
+The `server/package.json` does not include test scripts. Add tests if required.
+
+## Notes
+
+- The Angular client expects the backend WebSocket server at `ws://localhost:8080`.
+- If the backend is not running, the app will not receive live stock updates.
+- The frontend and backend each manage their own `node_modules` directories.
+
+## Scripts
+
+### Frontend scripts (`package.json`)
+
+- `npm start` — runs `ng serve` for the Angular app
+- `npm build` — builds the app for production
+- `npm run watch` — builds in watch mode
+- `npm test` — runs frontend unit tests
+
+### Backend scripts (`server/package.json`)
+
+- `npm start` — runs `node index.js`
+
+## Backend server details
+
+- WebSocket port: `8080`
+- Connection URL: `ws://localhost:8080`
+- Uses `dotenv`, `axios`, `finnhub`, and `ws`
+
+## Frontend details
+
+- Angular version: 21
+- Uses standalone components and Angular signals
+- Includes stock dashboard and stock card components
+- Uses `WebSocketService` to receive live updates from the backend
+
 - Component rendering and interactions
 - Service logic and data management
 - WebSocket communication handling
@@ -274,52 +252,10 @@ For production deployments, consider configuring:
 - `vitest`: Testing framework
 - `prettier`: Code formatter
 
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes and add tests
-4. Ensure all tests pass
-5. Submit a pull request
 
 ## License
 
 This project is licensed under the ISC License.
-
-## Support
-
-For questions or issues:
-- Check the troubleshooting section above
-- Review Angular documentation: https://angular.io
-- Check WebSocket specification: https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
-
-## Future Enhancements
-
-- Stock search and addition functionality
-- Price chart visualization
-- Price alert notifications
-- Portfolio management features
-- Historical data analysis
-- Dark/light theme toggle
-- Offline data caching
-│   │       └── stock.model.ts        # Stock interface
-│   │
-│   ├── main.ts                       # App entry point
-│   ├── index.html                    # HTML page
-│   ├── styles.css                    # Global styles
-│   │
-├── angular.json                      # Angular configuration
-├── package.json                      # Project dependencies
-├── tsconfig.json                     # TypeScript config
-├── README.md                         # This file
-└── public/                           # Static files
 
 ```
 
@@ -332,21 +268,6 @@ For questions or issues:
 | `models/` | Define data shapes (Stock type) |
 | `public/` | Static files (images, icons, etc.) |
 
-## Available Commands
-
-```bash
-# Start development server
-npm start
-
-# Build for production
-npm build
-
-# Run tests
-npm test
-
-# Watch and rebuild
-npm run watch
-```
 
 ## How It Works
 
